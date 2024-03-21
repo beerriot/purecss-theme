@@ -1,0 +1,46 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% link /assets/pure-min.css %}" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd">
+    <link rel="stylesheet" href="{% link /assets/grids-responsive-min.css %}">
+    <link rel="stylesheet" href="{% link /assets/pure-menu-style.css %}">
+    {% include site_head_links.html %}
+    <meta property="og:type" content="{{ page.ogtype | default: 'website' }}" />
+    <meta property="og:title" content="{{site.title }}{% if site.subtitle %} {{site.subtitle}}{% endif %}{% if page.title %}: {{page.title}}{% endif %}" />
+    {% if page.key_image %}<meta property="og:image" content="{{ page.key_image | absolute_url }}" />{% endif %}
+    <meta property="og:url" content="{{ page.url | absolute_url}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{site.title }}{% if site.subtitle %} {{site.subtitle}}{% endif %}{% if page.title %}: {{page.title}}{% endif %}</title>
+  </head>
+  <body>
+    <div id="layout">
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu">
+        <div class="pure-menu">
+          <ul class="pure-menu-list">
+            <li class="pure-menu-item {% if page.url == "/" %}pure-menu-selected{% endif %}">
+              <a href="/" class="pure-menu-link">{{site.subtitle | default: "Home"}}</a>
+            </li>
+            {% include site_menu_links.html %}
+          </ul>
+        </div>
+      </div>
+      <div id="main">
+        <div class="header">
+          <h1>{% if page.title %}{{page.title}}{% else %}{{ site.title }} {{site.subtitle}}{% endif %}</h1>
+        </div>
+        <div class="content">
+          <div class="pure-g">
+            {{content}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% link /assets/pure-menu.js %}"></script>
+  </body>
+</html>
